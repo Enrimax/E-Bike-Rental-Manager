@@ -44,9 +44,50 @@ int main() {
     cin >> xUtente;
     cout << "Inserisci Y: ";
     cin >> yUtente;
-
-    
     float distanze[5];
     for (int i = 0; i < 5; i++) {
         distanze[i] = calcolaDistanza(elenco[i].x, elenco[i].y, xUtente, yUtente);
     }
+for (int i=0; i<4; i++){
+for (int j=0; j>4-i; j++){
+if(distanze[j]<distanze[j + 1]) {
+float tempD= distanze[j];
+distanze[j] = distanze[j + 1];
+distanze[j + 1]= tempD;
+Bici tempB =elenco[j];
+elenco[j]= elenco[j + 1];
+elenco[j+1]=tempB;
+}
+}
+}
+cout<<" Bici disponibili vicine:"<<endl;
+for(int i=0;i<5;i++){
+if(elenco[i].stato==1){
+stampaBici(elenco[i], distanze[i]);
+}
+}
+int idScelto, kmDaFare;
+cout<<"inserisci ID bici:"<<endl;
+cin>>idScelto;
+cout<<"Quanti km vuoi fare?"<<endl;
+cin>>kmDaFare;
+
+int pos=0;
+for(int i=0;i<5;i++){
+if(elenco[i].id==idScelto){
+pos =i;
+}
+}
+int ritardo= rand()% 15+1;
+float tempo=((float)kmDaFare/20*60)+
+ritardo;
+float costo= tempo* 0.20;
+
+elenco[pos].autonomia=
+elenco[pos].autonomia- kmDaFare;
+cout<<"Minuti totali:"<<tempo<<endl;
+cout<<"Costo:"<<costo<<"euro"<<endl;
+cout<<"Nuova autonomia bici:"<<elenco[pos].autonomia<<"km"<<endl;
+
+}
+
