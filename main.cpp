@@ -30,7 +30,7 @@ void stampaBici(Bici b, float d) {
 int main() {
     srand(time(0));
 
-    // Array con i dati delle 5 bici (alcune disponibili, alcune no)
+    
     Bici elenco[5] = {
         {1, 2, 3, 20, 1},
         {2, 5, 2, 15, 0},
@@ -49,8 +49,8 @@ int main() {
         distanze[i] = calcolaDistanza(elenco[i].x, elenco[i].y, xUtente, yUtente);
     }
 for (int i=0; i<4; i++){
-for (int j=0; j>4-i; j++){
-if(distanze[j]<distanze[j + 1]) {
+for (int j=0; j<4-i; j++){
+if(distanze[j]>distanze[j + 1]) {
 float tempD= distanze[j];
 distanze[j] = distanze[j + 1];
 distanze[j + 1]= tempD;
@@ -66,11 +66,34 @@ if(elenco[i].stato==1){
 stampaBici(elenco[i], distanze[i]);
 }
 }
-int idScelto, kmDaFare;
+int idScelto, pos;
+    bool idValido =false;
+    do{
 cout<<"inserisci ID bici:"<<endl;
 cin>>idScelto;
+for(int i= 0; i<5;i++){
+    if(elenco[i].id == idScelto && elenco[i].stato == 1){
+            idValido = true;
+            pos = i; 
+            break;
+    }
+    }
+
+    if(!idValido) {
+        cout << "Errore! ID non valido o bici non disponibile. Riprova." << endl;
+    }
+} while(!idValido);
+
+int kmDaFare;
+do {
 cout<<"Quanti km vuoi fare?"<<endl;
 cin>>kmDaFare;
+    if(kmDaFare > elenco[pos].autonomia){
+    cout<<"Errore, i km inseriti superano l'autonomia ella bici, inserisci i km in base al autonomia"<<endl;
+    } else if(kmDaFare <0) {
+        cout<<"Errore, non puoi inserire dei km in negativo"<<endl;
+    }
+}while(kmDafare <elenco[pos].autonomia || kmDaFare <0);
 
 int pos=0;
 for(int i=0;i<5;i++){
