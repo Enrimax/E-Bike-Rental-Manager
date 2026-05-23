@@ -21,9 +21,9 @@ float calcolaDistanza(int x1, int y1, int x2, int y2) {
     
     
 void stampaBici(Bici b, float d) {
-    cout << "ID: " << b.id 
-         << " - Distanza: " << d 
-         << " - Autonomia: " << b.autonomia << " km" << endl;
+    cout << "ID: " << b.id <<endl;
+     cout     << " Distanza: " << d <<endl;
+     cout    << " Autonomia: " << b.autonomia << " km" << endl;
 
 }
 
@@ -40,9 +40,9 @@ int main() {
     };
 
     int xUtente, yUtente;
-    cout << "Inserisci X: ";
+    cout << "Inserisci X: "<<endl;
     cin >> xUtente;
-    cout << "Inserisci Y: ";
+    cout << "Inserisci Y: "<<endl;
     cin >> yUtente;
     float distanze[5];
     for (int i = 0; i < 5; i++) {
@@ -80,7 +80,7 @@ for(int i= 0; i<5;i++){
     }
 
     if(!idValido) {
-        cout << "Errore! ID non valido o bici non disponibile. Riprova." << endl;
+        cout << "Errore, ID non valido , Riprova." << endl;
     }
 } while(!idValido);
 
